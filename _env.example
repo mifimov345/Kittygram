@@ -1,0 +1,8 @@
+POSTGRES_DB=kittygram
+POSTGRES_USER=kittygram
+POSTGRES_PASSWORD=kittygram
+DB_HOST=postgres
+DB_PORT=5432
+DJANGO_SECRET_KEY=dev-secret-key
+DJANGO_DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1

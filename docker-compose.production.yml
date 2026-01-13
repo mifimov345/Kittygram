@@ -1,0 +1,48 @@
+version: '3.8'
+
+volumes:
+  pg_data:
+  static:
+  media:
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    restart: always
+
+  backend:
+    image: mifimov345/kittygram_backend
+    container_name: backend
+    volumes:
+      - static:/app/static
+      - media:/app/media
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    restart: always
+
+  frontend:
+    image: mifimov345/kittygram_frontend
+    container_name: frontend
+    volumes:
+      - static:/static
+    command: sh -c "cp -r /app/build/* /static/"
+
+  gateway:
+    image: mifimov345/kittygram_gateway
+    container_name: gateway
+    ports:
+      - "80:80"
+    volumes:
+      - static:/static
+      - media:/media
+    depends_on:
+      - backend
+      - frontend
+    restart: always
