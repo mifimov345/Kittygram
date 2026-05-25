@@ -5,7 +5,7 @@ terraform {
     }
 
     bucket = "mifimov345-kittygram-tfstate"
-    region = "ru-central1"
+    region = "ru-central1-d"
     key    = "tf-state.tfstate"
 
     skip_region_validation      = true
