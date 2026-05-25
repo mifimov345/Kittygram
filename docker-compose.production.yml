@@ -16,7 +16,7 @@ services:
     restart: always
 
   backend:
-    image: mifimov345/kittygram_backend
+    image: ${DOCKERHUB_USERNAME}/kittygram_backend:latest
     container_name: backend
     volumes:
       - static:/app/static
@@ -28,17 +28,17 @@ services:
     restart: always
 
   frontend:
-    image: mifimov345/kittygram_frontend
+    image: ${DOCKERHUB_USERNAME}/kittygram_frontend:latest
     container_name: frontend
     volumes:
       - static:/static
     command: sh -c "cp -r /app/build/* /static/"
 
   gateway:
-    image: mifimov345/kittygram_gateway
+    image: ${DOCKERHUB_USERNAME}/kittygram_gateway:latest
     container_name: gateway
     ports:
-      - "80:80"
+      - "9000:80"
     volumes:
       - static:/static
       - media:/media
